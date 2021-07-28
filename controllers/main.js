@@ -2,7 +2,7 @@ const callData = new CallData();
 const getEle = (id) =>{
     return document.getElementById(id);
 }
-const getListTypeItem = (typeName, insideCloth) =>{
+const getListTypeItem = (typeName) =>{
     let content = '';
     callData.getItems()
     .then((result) =>{
@@ -14,7 +14,7 @@ const getListTypeItem = (typeName, insideCloth) =>{
                     <img src="${item.imgSrc_jpg}" class="card-img-top">
                     <div class="card-body item-content">
                       <h6 class="card-title">${item.name}</h6>
-                      <button class="btn btn-danger">Try it</button>
+                      <button class="btn btn-danger" onclick="tryClothes('${item.imgSrc_png}','${item.type}')">Try it</button>
                     </div>
                   </div>
                     </div>
@@ -28,37 +28,42 @@ const getListTypeItem = (typeName, insideCloth) =>{
     })
 } 
 
+function tryClothes(src, type){
+    document.querySelector(`.${type}`).style.display = 'block';
+    document.querySelector(`#${type}_img`).src = src;
+}
+
 const tabShirt = getEle('tab-tshirt');
 tabShirt.onclick = function(){
-    getListTypeItem('topclothes', 'bikinitop');
+    getListTypeItem('topclothes');
 }
 
 const tabPants = getEle('tab-pants');
 tabPants.onclick = function(){
-    getListTypeItem('botclothes', 'bikinibottom')
+    getListTypeItem('botclothes')
 }
 
 const tabShoes = getEle('tab-shoes');
 tabShoes.onclick = function(){
-    getListTypeItem('shoes', 'feet');
+    getListTypeItem('shoes');
 }
 
 const tabHandbag = getEle('tab-handbag');
 tabHandbag.onclick = function(){
-    getListTypeItem('handbags', 'handbag')
+    getListTypeItem('handbags')
 }
 
 const tabNecklace = getEle('tab-necklace');
 tabNecklace.onclick = function(){
-    getListTypeItem('necklaces', 'necklace')
+    getListTypeItem('necklaces')
 }
 
 const tabHairStyle = getEle('tab-hairstye');
 tabHairStyle.onclick = function(){
-    getListTypeItem('hairstyle', 'hairstyles')
+    getListTypeItem('hairstyle')
 }
 
 const tabBackground = getEle('tab-background');
 tabBackground.onclick = function(){
-    getListTypeItem('background', 'backgrounds')
+    getListTypeItem('background')
 }
